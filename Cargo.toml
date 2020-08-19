@@ -1,0 +1,15 @@
+[package]
+name = "hello-actix-web-2"
+version = "0.1.0"
+authors = ["Stephen Stack <sfstack7500@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+actix-web1 = { package = "actix-web", version = "1" }
+actix-web2 = { package = "actix-web", version = "2" }
+actix-rt = "1"
+futures1 = { package = "futures", version = "0.1" }
+futures3 = { package = "futures", version = "0.3", features = ["compat"]}
+tokio1 = { package = "tokio", version = "0.1" }
+tokio2 = { package = "tokio", version = "0.2" }
+tokio-compat = "0.1.6"
