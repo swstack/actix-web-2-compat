@@ -9,7 +9,9 @@ fn main() {
     let local_tasks = tokio2::task::LocalSet::new();
     let sys = actix_rt::System::run_in_tokio("main", &local_tasks);
     local_tasks.spawn_local(sys);
-    runtime.block_on_std(local_tasks.run_until(run_server()));
+    runtime
+        .block_on_std(local_tasks.run_until(run_server()))
+        .unwrap();
 }
 
 async fn run_server() -> std::io::Result<()> {
@@ -18,7 +20,7 @@ async fn run_server() -> std::io::Result<()> {
             .data(endpoint::AppState {
                 app_name: String::from("Actix-web"),
             })
-            .route("/execute", web::post().to(endpoint::index))
+            .route("/", web::post().to(endpoint::index))
     })
     .bind("127.0.0.1:8242")?
     .run()
